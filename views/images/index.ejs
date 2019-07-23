@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <header>
+      <h1>Phantogram</h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="/images/new">Add a new post</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h2>Feed</h2>
+      <ul>
+          <% for(let i = 0; i < images.length; i++){ %>
+              <li>
+                  <a href="/images/<%=images[i]._id%>"><%=images[i].name%></a>
+                  <a href="/images/<%=images[i]._id%>"><%=images[i].photo%></a>
+              </li>
+          <% } %>
+      </ul>
+
+    </main>
+  </body>
+</html>
