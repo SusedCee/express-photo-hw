@@ -52,6 +52,34 @@ router.get('/:id', (req, res) => {
 });
 
 
+//edit the list
+router.get('/:id/edit', (req, res) => {
+  Image.findById(req.params.id, (err, image) => {
+    if(err){
+      console.log(err);
+    }else {
+      res.render('edit.ejs', {
+        image: image
+      })
+    }
+  })
+});
+
+router.put('/:id', (req, res) => {
+  console.log(req.body, ' in put route')
+  console.log('/images/:id')
+})
+
+//delete
+router.delete('/:id', (req, res) => {
+	Image.findOneAndDelete(req.params.id, (err, deleteImage) => {
+		if(err){
+			res.send(err);
+		} else {
+		res.redirect('/images');
+		};
+	});
+});
 
 
 
