@@ -30,11 +30,11 @@ router.post('/', (req, res) => {
 
 //new - send new post
 router.get('/new', (req, res) => {
-	res.render('new.ejs')
+	res.render('./images/new.ejs')
 });
 
 //show params inside routing docs in express
-//localhost:3000/cars/0
+//localhost:3000/images/0
 router.get('/:id', (req, res) => {
 	console.log(req.params, "<-- req.params");
 	console.log('/images/:id')
@@ -42,7 +42,7 @@ router.get('/:id', (req, res) => {
 			if(err) {
 				res.send(err);
 			} else {
-				res.render('show.ejs', {
+				res.render('./images/show.ejs', {
 					image: image
 			});
 		}
@@ -56,7 +56,7 @@ router.get('/:id/edit', (req, res) => {
     if(err){
       console.log(err);
     }else {
-      res.render('edit.ejs', {
+      res.render('./images/edit.ejs', {
         image: image
       })
     }

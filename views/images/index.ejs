@@ -21,7 +21,7 @@
           <% for(let i = 0; i < images.length; i++){ %>
               <li>
                   <a href="/images/<%=images[i]._id%>"><%=images[i].name%></a>
-                  <a href="/images/<%=images[i]._id%>"><%=images[i].photo%></a>
+                  <img src="<%=images[i].photo%>">
               </li>
           <% } %>
       </ul>
