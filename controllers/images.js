@@ -4,17 +4,15 @@ const Image = require('../models/images');
 
 router.get('/', (req, res) => {
   Image.find({}, (err, foundImages) => {
-    if(err){
+      if(err){
       res.send(err);
     } else {
       console.log(foundImages)
-
       res.render('images/index.ejs', { //-------------------------------
         images: foundImages
       });
     }
   })
-
 });
 
 //listens for post requests to add post
