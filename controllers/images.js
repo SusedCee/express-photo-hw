@@ -86,7 +86,7 @@ router.delete('/:id', (req, res) => {
 
 	console.log(`DELETE /images/${req.params.id}`);
 
-	Image.findOneAndDelete(req.params.id, (err, deleteImage) => {
+	Image.findByIdAndDelete(req.params.id, (err, deleteImage) => {
 		if(err){
 			res.send(err);
 		} else {

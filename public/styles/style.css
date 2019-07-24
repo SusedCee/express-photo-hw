@@ -44,7 +44,9 @@ a:link, a:visited {
 }
 
 li {
+	color: white;
 	display: flex;
+	text-align: center;
 	justify-content: center;
 	flex-direction: column;
 	text-decoration: none;
@@ -58,11 +60,20 @@ li {
 	display: flex;
 	justify-content: flex-start;
 	text-decoration: none;
-	font-family: sans-serif;
 	padding: 8px 13px;
 	font-family: sans-serif;
 	color: white;
 	font-size: 20px;
+}
+
+form {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	font-family: sans-serif;
+	color: white;
+	font-size: 20px;
+	width: 200px;
 }
 
 
