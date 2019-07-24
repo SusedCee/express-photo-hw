@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="/styles/style.css">
+    </head>
+    <body>
+        <h1>Update User</h1>
+        <!--  NOTE: action will be the route, method will be the HTTP verb-->
+        <form action="/users/<%=user._id%>?_method=PUT" method="POST">
+            User Name: <input type="text" name="name" value="<%=user.name%>"/><br/>
+            <input type="submit" name="" value="Update User"/>
+        </form>
+    </body>
+</html>
