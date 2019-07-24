@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title></title>
+  <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
   <h1>Post Show Page</h1>
@@ -15,10 +16,15 @@
           Photo:  <img src="<%=image.photo%>"> 
       </li>
       <li>
-          Caption: <%= image.caption%>
+          Caption: <%= image.caption;%>
       </li>
   </ul>
-  <a href="/images/<%=image._id%>/edit">Edit this post</a>
+  <ul>
+    <a href="/images/<%=image._id%>/edit">Edit this post</a>
+    <form action="/images/<%=image._id%>?_method=DELETE" method="POST">
+      <input type="submit" value="DELETE"/>
+    </form>
+  </ul>
 </body>
 </html>
 

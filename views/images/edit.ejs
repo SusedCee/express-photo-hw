@@ -3,15 +3,15 @@
     <head>
         <meta charset="utf-8">
         <title></title>
-        <!-- <link rel="stylesheet" href="/css/app.css"> -->
+        <link rel="stylesheet" href="/styles/style.css">
     </head>
     <body>
         <h1>Update Post</h1>
         <!--  NOTE: action will be the route, method will be the HTTP verb-->
-        <form action="/images" method="POST">
+        <form action="/images/<%=image._id%>?_method=PUT" method="POST">
             User Name: <input type="text" name="name" value="<%=image.name%>"/><br/>
             Photo: <input type="text" name="photo" value="<%=image.photo%>" /><br/>
-            Caption: <input type="number" name="textarea" value="<%=image.caption%>"/><br/>
+            Caption: <input type="textarea" name="caption" value="<%=image.caption%>"/><br/>
             <input type="submit" name="" value="Update Post"/>
         </form>
     </body>

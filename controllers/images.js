@@ -2,17 +2,20 @@ const express = require('express');
 const router = express.Router();
 const Image = require('../models/images');
 
+
+
+
 router.get('/', (req, res) => {
   Image.find({}, (err, foundImages) => {
       if(err){
       res.send(err);
     } else {
       console.log(foundImages)
-      res.render('images/index.ejs', { //-------------------------------
+      res.render('images/index.ejs', { 
         images: foundImages
       });
     }
-  })
+  });
 });
 
 //listens for post requests to add post
@@ -58,23 +61,36 @@ router.get('/:id/edit', (req, res) => {
     }else {
       res.render('./images/edit.ejs', {
         image: image
-      })
-    }
-  })
+      });
+    };
+  });
 });
 
 router.put('/:id', (req, res) => {
   console.log(req.body, ' in put route')
   console.log('/images/:id')
-})
+
+  Image.findByIdAndUpdate(req.params.id, req.body, (err, updatedImage) =>
+  	{ 
+  		if(err){
+  			console.log(err);
+  		} else {
+  			res.redirect('/images')
+  		};
+  	//callback function
+  	});
+});
 
 //delete
 router.delete('/:id', (req, res) => {
+
+	console.log(`DELETE /images/${req.params.id}`);
+
 	Image.findOneAndDelete(req.params.id, (err, deleteImage) => {
 		if(err){
 			res.send(err);
 		} else {
-		res.redirect('/images');
+			res.redirect('/images');
 		};
 	});
 });
