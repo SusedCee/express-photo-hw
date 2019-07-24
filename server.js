@@ -15,10 +15,10 @@ app.use(express.static('public'));
 app.use('/images', imagesController);
 app.use('/users', usersController);
 
-// landing page we don't need a controller
-// app.get('/', (req, res) => {
-//   res.render('index.ejs');
-// });
+// home page!!!! (where we will have link to go to user list and all pic feed) we don't need a controller
+app.get('/', (req, res) => {
+  res.render('index.ejs');
+});
 
 app.listen(3000, () => {
 	console.log('listening to port 3000')

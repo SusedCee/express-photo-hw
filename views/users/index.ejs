@@ -8,22 +8,15 @@
 </head>
 <body>
   <h1>All Users Show Page</h1>
-    <ul>
-      <li>
-          Caption: <%= image.caption;%>
-      </li>
-      <li>
-          <img src="<%=image.photo%>"> 
-      </li>
-      <li>
-          User Name: <%= image.name; %> 
-      </li>
-  </ul>
   <ul>
-    <form action="/images/<%=image._id%>?_method=DELETE" method="POST">
-      <input type="submit" value="DELETE THIS POST"/>
-    </form>
-    <a href="/images/<%=image._id%>/edit">Edit this post</a>
+    <li>
+       <% for(let i = 0; i < users.length; i++){ %>
+        <a href="/users/<%=users[i]._id%>"><%=users[i].name%></a>
+        <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
+          <input type="submit" value="DELETE THIS POST"/>
+        </form>
+        <%}%>
+    </li>
   </ul>
 </body>
 </html>

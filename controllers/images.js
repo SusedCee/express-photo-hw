@@ -3,8 +3,6 @@ const router = express.Router();
 const Image = require('../models/images');
 
 
-
-
 router.get('/', (req, res) => {
   Image.find({}, (err, foundImages) => {
       if(err){
