@@ -18,10 +18,26 @@ router.get('/', (req, res) => {
   });
 });
 
+//going to the feed from the home page ------------
+router.get('/images/', (req, res) => {
+  Image.find({}, (err, foundFeed) => {
+  	// console.log(req.params, '<--- array of users')
+      if(err){
+      res.send(err);
+    } else {
+      // console.log(foundUsers)
+      res.render('/images/index.ejs', { 
+        images: foundFeed
+      });
+    }
+   // res.send('working');
+  });
+});
+
 //showing the list of authors
 router.get('/users', (req, res) => {
   User.find({}, (err, foundUsers) => {
-  	// console.log(req.params, '<--- array of users')
+  	console.log(req.params, '<--- the authors from home')
       if(err){
       res.send(err);
     } else {
@@ -69,20 +85,20 @@ router.get('/:id/', (req, res) => {
 });
 
 
-//edit the user
+//EDIT the user
 router.get('/:id/edit', (req, res) => {
-  User.findById(req.params.id, (err, image) => {
+  User.findById(req.params.id, (err, foundUser) => {
     if(err){
       console.log(err);
     }else {
       res.render('./users/edit.ejs', {
-        user: user
+        users: foundUser
       });
     };
   });
 });
 
-//put the edited user in list of users(all users show page)
+//PUT the edited user in list of users(all users show page)
 router.put('/:id', (req, res) => {
   console.log(req.body, ' in put route')
   console.log('/users/:id')
@@ -96,6 +112,20 @@ router.put('/:id', (req, res) => {
   		};
   	//callback function
   	});
+});
+
+//DELETE
+router.delete('/:id', (req, res) => {
+
+	console.log(`DELETE /users/${req.params.id}`);
+
+	User.findByIdAndDelete(req.params.id, (err, deleteUser) => {
+		if(err){
+			res.send(err);
+		} else {
+			res.redirect('/users');
+		};
+	});
 });
 
 
