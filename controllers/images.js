@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Image = require('../models/images');
+const User = require('../models/users');
 
 
 router.get('/', (req, res) => {
@@ -31,24 +32,50 @@ router.post('/', (req, res) => {
 
 //new - send new post
 router.get('/new', (req, res) => {
-	res.render('./images/new.ejs')
+	User.find({}, (err, allTheUsers) => {
+	res.render('./images/new.ejs', 
+	{
+		users: allTheUsers
+		})	
+  	})
+
 });
 
 //show params inside routing docs in express
 //localhost:3000/images/0
-router.get('/:id', (req, res) => {
-	console.log(req.params, "<-- req.params");
-	console.log('/images/:id')
-	Image.findById(req.params.id, (err, image) => {
-			if(err) {
-				res.send(err);
-			} else {
-				res.render('./images/show.ejs', {
-					image: image
-			});
-		}
+router.get('/:id', async (req, res) => {
+	const image = await Image.findById(req.params.id);
+	console.log(image, "<-- req.params");
+	res.render('images/show.ejs', {
+		image: image
 	});
 });
+
+
+
+
+
+
+// //go to individual user show page
+// router.get('/:id/', async (req, res) => {
+// 	const user = await User.findById(req.params.id)
+// 	const usersPosts = await Image.find({creator: req.params.id});
+// 	console.log(usersPosts)
+// 	res.render('users/show.ejs', {
+// 		user: user, 
+// 		images: usersPosts
+//   });
+// });
+
+
+
+
+
+
+
+
+
+
 
 
 //edit the list

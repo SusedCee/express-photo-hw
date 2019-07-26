@@ -7,17 +7,22 @@
   <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
-  <h1>All of One User Show Page</h1>
+  <h1>All of One User Images Show Page</h1>
   <ul>
     <li>
-        Name: <%= users.name; %> 
+      <% images.forEach(function(image, index) {%> <!-- images is the array of objects --> 
+      <img src="<%=image.photo%>"></a>
+    <%})%>
+    </li>
+    <li>
+        Name: <%= user.name%> 
     </li>
   </ul>
   <ul>
-    <form action="/users/<%=users._id%>?_method=DELETE" method="POST">
+    <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
       <input type="submit" value="DELETE THIS USER"/>
     </form>
-    <a href="/users/<%=users._id%>/edit">Edit this user </a>
+    <a href="/users/<%=user._id%>/edit">Edit this user </a>
   </ul>
 </body>
 </html>

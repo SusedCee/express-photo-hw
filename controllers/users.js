@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/users');
+const Image = require('../models/images');
 
 //going to home page
 router.get('/', (req, res) => {
@@ -34,7 +35,7 @@ router.get('/images/', (req, res) => {
   });
 });
 
-//showing the list of authors
+//showing the list of users
 router.get('/users', (req, res) => {
   User.find({}, (err, foundUsers) => {
   	console.log(req.params, '<--- the authors from home')
@@ -69,18 +70,13 @@ router.get('/new', (req, res) => {
 });
 
 //go to individual user show page
-router.get('/:id/', (req, res) => {
-  User.findById(req.params.id, (err, foundIndividual) => {
-  	// console.log(req.params, '<--- array of users')
-      if(err){
-      res.send(err);
-    } else {
-      // console.log(foundUsers)
-      res.render('users/show.ejs', { 
-        users: foundIndividual
-      });
-    }
-   // res.send('working');
+router.get('/:id/', async (req, res) => {
+	const user = await User.findById(req.params.id)
+	const usersPosts = await Image.find({creator: req.params.id});
+	console.log(usersPosts)
+	res.render('users/show.ejs', {
+		user: user, 
+		images: usersPosts
   });
 });
 
@@ -114,7 +110,7 @@ router.put('/:id', (req, res) => {
   	});
 });
 
-//DELETE
+//DELETE and redirect to all users page
 router.delete('/:id', (req, res) => {
 
 	console.log(`DELETE /users/${req.params.id}`);
@@ -127,7 +123,5 @@ router.delete('/:id', (req, res) => {
 		};
 	});
 });
-
-
 
 module.exports = router;
